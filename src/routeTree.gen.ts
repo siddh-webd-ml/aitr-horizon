@@ -18,6 +18,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as DepartmentsRouteImport } from './routes/departments'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AboutRouteImport } from './routes/about'
@@ -68,6 +69,11 @@ const DepartmentsRoute = DepartmentsRouteImport.update({
   path: '/departments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CampusLifeRoute = CampusLifeRouteImport.update({
   id: '/campus-life',
   path: '/campus-life',
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
+  '/contact': typeof ContactRoute
   '/departments': typeof DepartmentsRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
+  '/contact': typeof ContactRoute
   '/departments': typeof DepartmentsRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
+  '/contact': typeof ContactRoute
   '/departments': typeof DepartmentsRoute
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/campus-life'
+    | '/contact'
     | '/departments'
     | '/events'
     | '/faculty'
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/campus-life'
+    | '/contact'
     | '/departments'
     | '/events'
     | '/faculty'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admissions'
     | '/campus-life'
+    | '/contact'
     | '/departments'
     | '/events'
     | '/faculty'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdmissionsRoute: typeof AdmissionsRoute
   CampusLifeRoute: typeof CampusLifeRoute
+  ContactRoute: typeof ContactRoute
   DepartmentsRoute: typeof DepartmentsRoute
   EventsRoute: typeof EventsRoute
   FacultyRoute: typeof FacultyRoute
@@ -264,6 +277,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DepartmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/campus-life': {
       id: '/campus-life'
       path: '/campus-life'
@@ -300,6 +320,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdmissionsRoute: AdmissionsRoute,
   CampusLifeRoute: CampusLifeRoute,
+  ContactRoute: ContactRoute,
   DepartmentsRoute: DepartmentsRoute,
   EventsRoute: EventsRoute,
   FacultyRoute: FacultyRoute,
