@@ -25,6 +25,7 @@ import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StudentIndexRouteImport } from './routes/student/index'
+import { Route as StudentAttendanceRouteImport } from './routes/student/attendance'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 
 const ResearchRoute = ResearchRouteImport.update({
@@ -107,6 +108,11 @@ const StudentIndexRoute = StudentIndexRouteImport.update({
   path: '/student/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentAttendanceRoute = StudentAttendanceRouteImport.update({
+  id: '/student/attendance',
+  path: '/student/attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
   path: '/admin/login',
@@ -130,6 +136,7 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
   '/admin/login': typeof AdminLoginRoute
+  '/student/attendance': typeof StudentAttendanceRoute
   '/student/': typeof StudentIndexRoute
 }
 export interface FileRoutesByTo {
@@ -149,6 +156,7 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
   '/admin/login': typeof AdminLoginRoute
+  '/student/attendance': typeof StudentAttendanceRoute
   '/student': typeof StudentIndexRoute
 }
 export interface FileRoutesById {
@@ -169,6 +177,7 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
   '/admin/login': typeof AdminLoginRoute
+  '/student/attendance': typeof StudentAttendanceRoute
   '/student/': typeof StudentIndexRoute
 }
 export interface FileRouteTypes {
@@ -190,6 +199,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/research'
     | '/admin/login'
+    | '/student/attendance'
     | '/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -209,6 +219,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/research'
     | '/admin/login'
+    | '/student/attendance'
     | '/student'
   id:
     | '__root__'
@@ -228,6 +239,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/research'
     | '/admin/login'
+    | '/student/attendance'
     | '/student/'
   fileRoutesById: FileRoutesById
 }
@@ -248,6 +260,7 @@ export interface RootRouteChildren {
   ProgramsRoute: typeof ProgramsRoute
   ResearchRoute: typeof ResearchRoute
   AdminLoginRoute: typeof AdminLoginRoute
+  StudentAttendanceRoute: typeof StudentAttendanceRoute
   StudentIndexRoute: typeof StudentIndexRoute
 }
 
@@ -365,6 +378,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/attendance': {
+      id: '/student/attendance'
+      path: '/student/attendance'
+      fullPath: '/student/attendance'
+      preLoaderRoute: typeof StudentAttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/login': {
       id: '/admin/login'
       path: '/admin/login'
@@ -392,6 +412,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramsRoute: ProgramsRoute,
   ResearchRoute: ResearchRoute,
   AdminLoginRoute: AdminLoginRoute,
+  StudentAttendanceRoute: StudentAttendanceRoute,
   StudentIndexRoute: StudentIndexRoute,
 }
 export const routeTree = rootRouteImport
