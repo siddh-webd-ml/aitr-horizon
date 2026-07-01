@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as DepartmentsRouteImport } from './routes/departments'
 import { Route as CampusLifeRouteImport } from './routes/campus-life'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
@@ -31,6 +32,11 @@ const ProgramsRoute = ProgramsRouteImport.update({
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyRoute = FacultyRouteImport.update({
+  id: '/faculty',
+  path: '/faculty',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DepartmentsRoute = DepartmentsRouteImport.update({
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/departments': typeof DepartmentsRoute
+  '/faculty': typeof FacultyRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/departments': typeof DepartmentsRoute
+  '/faculty': typeof FacultyRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/admissions': typeof AdmissionsRoute
   '/campus-life': typeof CampusLifeRoute
   '/departments': typeof DepartmentsRoute
+  '/faculty': typeof FacultyRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/campus-life'
     | '/departments'
+    | '/faculty'
     | '/placements'
     | '/programs'
     | '/research'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/campus-life'
     | '/departments'
+    | '/faculty'
     | '/placements'
     | '/programs'
     | '/research'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/admissions'
     | '/campus-life'
     | '/departments'
+    | '/faculty'
     | '/placements'
     | '/programs'
     | '/research'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   AdmissionsRoute: typeof AdmissionsRoute
   CampusLifeRoute: typeof CampusLifeRoute
   DepartmentsRoute: typeof DepartmentsRoute
+  FacultyRoute: typeof FacultyRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgramsRoute: typeof ProgramsRoute
   ResearchRoute: typeof ResearchRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/placements'
       fullPath: '/placements'
       preLoaderRoute: typeof PlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty': {
+      id: '/faculty'
+      path: '/faculty'
+      fullPath: '/faculty'
+      preLoaderRoute: typeof FacultyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/departments': {
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdmissionsRoute: AdmissionsRoute,
   CampusLifeRoute: CampusLifeRoute,
   DepartmentsRoute: DepartmentsRoute,
+  FacultyRoute: FacultyRoute,
   PlacementsRoute: PlacementsRoute,
   ProgramsRoute: ProgramsRoute,
   ResearchRoute: ResearchRoute,
