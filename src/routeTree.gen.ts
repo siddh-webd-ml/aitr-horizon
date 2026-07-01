@@ -13,6 +13,7 @@ import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as NewsRouteImport } from './routes/news'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FacultyRouteImport } from './routes/faculty'
@@ -42,6 +43,11 @@ const PlacementsRoute = PlacementsRouteImport.update({
 const NewsRoute = NewsRouteImport.update({
   id: '/news',
   path: '/news',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByTo {
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
@@ -139,6 +147,7 @@ export interface FileRoutesById {
   '/faculty': typeof FacultyRoute
   '/gallery': typeof GalleryRoute
   '/library': typeof LibraryRoute
+  '/login': typeof LoginRoute
   '/news': typeof NewsRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
@@ -157,6 +166,7 @@ export interface FileRouteTypes {
     | '/faculty'
     | '/gallery'
     | '/library'
+    | '/login'
     | '/news'
     | '/placements'
     | '/programs'
@@ -173,6 +183,7 @@ export interface FileRouteTypes {
     | '/faculty'
     | '/gallery'
     | '/library'
+    | '/login'
     | '/news'
     | '/placements'
     | '/programs'
@@ -189,6 +200,7 @@ export interface FileRouteTypes {
     | '/faculty'
     | '/gallery'
     | '/library'
+    | '/login'
     | '/news'
     | '/placements'
     | '/programs'
@@ -206,6 +218,7 @@ export interface RootRouteChildren {
   FacultyRoute: typeof FacultyRoute
   GalleryRoute: typeof GalleryRoute
   LibraryRoute: typeof LibraryRoute
+  LoginRoute: typeof LoginRoute
   NewsRoute: typeof NewsRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgramsRoute: typeof ProgramsRoute
@@ -240,6 +253,13 @@ declare module '@tanstack/react-router' {
       path: '/news'
       fullPath: '/news'
       preLoaderRoute: typeof NewsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -326,6 +346,7 @@ const rootRouteChildren: RootRouteChildren = {
   FacultyRoute: FacultyRoute,
   GalleryRoute: GalleryRoute,
   LibraryRoute: LibraryRoute,
+  LoginRoute: LoginRoute,
   NewsRoute: NewsRoute,
   PlacementsRoute: PlacementsRoute,
   ProgramsRoute: ProgramsRoute,
