@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ResearchRouteImport } from './routes/research'
 import { Route as ProgramsRouteImport } from './routes/programs'
 import { Route as PlacementsRouteImport } from './routes/placements'
+import { Route as NewsRouteImport } from './routes/news'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as FacultyRouteImport } from './routes/faculty'
 import { Route as EventsRouteImport } from './routes/events'
@@ -34,6 +35,11 @@ const ProgramsRoute = ProgramsRouteImport.update({
 const PlacementsRoute = PlacementsRouteImport.update({
   id: '/placements',
   path: '/placements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsRoute = NewsRouteImport.update({
+  id: '/news',
+  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LibraryRoute = LibraryRouteImport.update({
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/library': typeof LibraryRoute
+  '/news': typeof NewsRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/library': typeof LibraryRoute
+  '/news': typeof NewsRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/events': typeof EventsRoute
   '/faculty': typeof FacultyRoute
   '/library': typeof LibraryRoute
+  '/news': typeof NewsRoute
   '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
   '/research': typeof ResearchRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faculty'
     | '/library'
+    | '/news'
     | '/placements'
     | '/programs'
     | '/research'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faculty'
     | '/library'
+    | '/news'
     | '/placements'
     | '/programs'
     | '/research'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/events'
     | '/faculty'
     | '/library'
+    | '/news'
     | '/placements'
     | '/programs'
     | '/research'
@@ -168,6 +180,7 @@ export interface RootRouteChildren {
   EventsRoute: typeof EventsRoute
   FacultyRoute: typeof FacultyRoute
   LibraryRoute: typeof LibraryRoute
+  NewsRoute: typeof NewsRoute
   PlacementsRoute: typeof PlacementsRoute
   ProgramsRoute: typeof ProgramsRoute
   ResearchRoute: typeof ResearchRoute
@@ -194,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/placements'
       fullPath: '/placements'
       preLoaderRoute: typeof PlacementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news': {
+      id: '/news'
+      path: '/news'
+      fullPath: '/news'
+      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/library': {
@@ -264,6 +284,7 @@ const rootRouteChildren: RootRouteChildren = {
   EventsRoute: EventsRoute,
   FacultyRoute: FacultyRoute,
   LibraryRoute: LibraryRoute,
+  NewsRoute: NewsRoute,
   PlacementsRoute: PlacementsRoute,
   ProgramsRoute: ProgramsRoute,
   ResearchRoute: ResearchRoute,
