@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as PlacementsRouteImport } from './routes/placements'
 import { Route as DepartmentsRouteImport } from './routes/departments'
 import { Route as AdmissionsRouteImport } from './routes/admissions'
 import { Route as AboutRouteImport } from './routes/about'
@@ -18,6 +19,11 @@ import { Route as IndexRouteImport } from './routes/index'
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlacementsRoute = PlacementsRouteImport.update({
+  id: '/placements',
+  path: '/placements',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DepartmentsRoute = DepartmentsRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/departments': typeof DepartmentsRoute
+  '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/departments': typeof DepartmentsRoute
+  '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,34 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admissions': typeof AdmissionsRoute
   '/departments': typeof DepartmentsRoute
+  '/placements': typeof PlacementsRoute
   '/programs': typeof ProgramsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/admissions' | '/departments' | '/programs'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/admissions'
+    | '/departments'
+    | '/placements'
+    | '/programs'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/admissions' | '/departments' | '/programs'
-  id: '__root__' | '/' | '/about' | '/admissions' | '/departments' | '/programs'
+  to:
+    | '/'
+    | '/about'
+    | '/admissions'
+    | '/departments'
+    | '/placements'
+    | '/programs'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/admissions'
+    | '/departments'
+    | '/placements'
+    | '/programs'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +104,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdmissionsRoute: typeof AdmissionsRoute
   DepartmentsRoute: typeof DepartmentsRoute
+  PlacementsRoute: typeof PlacementsRoute
   ProgramsRoute: typeof ProgramsRoute
 }
 
@@ -86,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/placements': {
+      id: '/placements'
+      path: '/placements'
+      fullPath: '/placements'
+      preLoaderRoute: typeof PlacementsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/departments': {
@@ -124,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdmissionsRoute: AdmissionsRoute,
   DepartmentsRoute: DepartmentsRoute,
+  PlacementsRoute: PlacementsRoute,
   ProgramsRoute: ProgramsRoute,
 }
 export const routeTree = rootRouteImport
